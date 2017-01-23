@@ -1,0 +1,8 @@
+PERSONAL LEARNING GOALS
+  - For the first few sprints of this class, my primary learning goal is to learn and understand C to the poing of being able to explain it to other people. Before coming into this class, I have no experience coding in C and I really did not understand any of the intricacies of the language. 
+
+TEAM FORMATION
+  - During team formation, a lot of the students (including myself) were wandering around aimlessly not knowing enough about C to really commit to a project theme. Eventually, I found a few people who were like me and really wanted to focus on understanding the language and picking a project that would allow us to learn a lot, while still ending with something that we were happy with. I think team formation would have been more accurate if we ranked ourselves based on ability first then project theme. It was really hard to pick a theme when I didn't know what a lot of the themes even meant.
+
+SPRINT PLANNING/DIVIDING RESPONSIBILITIES
+- I think our sprint planning has gone fairly well so far. I do think there was the issue of not really knowing yet what specific things we will need to do for our project, but I think after doing some research today we will be able to fill in gaps tomorrow. I wish that we were given more time or guidance to determine what our project entails, but I think that we will resovle that issue quickly. We chose our Srum Master, Hannah because she has more experience with scrum and trello than Louise or I and Katie had been Scrum Master in a different class. As of right now, our team has very few divisions of responsibility because we all want to make sure we know everything there is to know, but for future sprints, we may begin to break up tasks more.

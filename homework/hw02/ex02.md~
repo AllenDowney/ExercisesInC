@@ -1,0 +1,68 @@
+# Exercise 2
+## Pointers
+
+
+1.  Read `stack.c`, which should be in this directory.  What is it
+intended to do?  What would the output be if the program worked as
+expected?
+
+I think it is trying to print out each value in the array on a separate line. Right now the output should be:
+42
+42
+42
+42
+42
+
+2.  Compile it.  Do you get a warning?  What does it mean?
+
+stack.c: In function ‘foo’:
+stack.c:22:5: warning: function returns address of local variable [-Wreturn-local-addr]
+     return array;
+     ^
+
+This means that the function is returning the address of a local variable, so it is returning the address of a variable that only exists inside of the function. The array that is created in foo is not the same as the array created in bar or main.
+
+3.  Run it.  What happens?  Can you explain it?  You might find it
+helpful to draw a stack diagram.
+
+0
+0
+-948347264
+32629
+-948259488
+
+
+4.  Comment out the `print` statements in `foo()` and `bar()` and run
+it again.  What happens now?
+
+Same compile error, but when it is run it prints:
+
+0x7fffc9fc4db0
+0x7fffc9fc4db0
+0
+1
+2
+3
+4
+
+
+5.  Add comments to the code to explain these experiments and the results,
+then check the code in to the repo.
+
+Moral: Don't return pointers to stack allocated data!
+
+
+## Chapter 2
+
+
+### Processes
+
+1) Give a real-world example of virtualization (ideally not one of the ones in the book).
+
+2) What is the difference between a program and a process?
+
+3) What is the primary purpose of the process abstraction?  What illusion does the process abstraction create?
+
+4) What is the kernel?
+
+5) What is a daemon?

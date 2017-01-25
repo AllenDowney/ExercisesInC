@@ -57,7 +57,7 @@ Ignoring the details of the encoding scheme, how many different characters can b
 
 8) What is a context switch?
 
-As an exercise, run `aspace.c` on your computer and compare your results to mine.
+In this directory, you should find a subdirectory named `aspace` that contains `aspace.c`.  Run it on your computer and compare your results to mine.
   
 1) Add a second call to `malloc` and check whether the heap on your system grows up (toward larger addresses).  
 
@@ -180,9 +180,9 @@ different cache sizes.
 Run the cache code on your laptop or another computer and see if you can infer the cache size and block size.  
 If you can find the technical specifications for your computer, see if your inferences are right.
 
-1) In the SoftwareSystems repository, look in lecture14. Read cache.c.  Run make and ./cache.
+1) In this directory you should find a subdirectory named `cache` that contains `cache.c` and supporting files.  Read `cache.c`, then run `make` and `./cache`.
 
-2) Run python graph_data.py to see the results.  What can you infer about the cache structure on your computer?
+2) Run `python graph_data.py` to see the results.  What can you infer about the cache structure on your computer?
 
 
 ## Chapter 8
@@ -213,9 +213,9 @@ As you read Chapter 9, you should compile and run the example code.  By the natu
 
 1) Why does each thread have its own stack?
 
-2) What does the gcc flag -lpthread do?
+2) What does the `gcc flag -lpthread` do?
 
-3) What does the argument of pthread_exit do?
+3) What does the argument of `pthread_exit` do?
 
 4) Normally the same thread that created a thread also waits to join it.  What happens if another thread tries to join a thread it did not create?
 
@@ -253,4 +253,4 @@ the queue in an inconsistent state.
 ## Chapter 11
 
 
-Semaphores in C
+### Semaphores in C

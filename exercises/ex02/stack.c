@@ -17,7 +17,7 @@ int *foo() {
     //printf("%p\n", array);
 
     for (i=0; i<SIZE; i++) {
-	array[i] = 42;
+        array[i] = 42;
     }
     return array;
 }
@@ -29,7 +29,7 @@ void bar() {
     //printf("%p\n", array);
 
     for (i=0; i<SIZE; i++) {
-	array[i] = i;
+        array[i] = i;
     }
 }
 
@@ -40,7 +40,7 @@ int main()
     bar();
 
     for (i=0; i<SIZE; i++) {
-	printf("%d\n", array[i]);
+        printf("%d\n", array[i]);
     }
 
     return 0;

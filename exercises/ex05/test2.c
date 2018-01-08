@@ -5,15 +5,15 @@
 
 int main (int argc, char *argv[])
 {
-  int i;
-  double x;
+    int i;
+    double x;
 
-  srandom (time (NULL));
+    srandom (time (NULL));
 
-  for (i=0; i<10000; i++) {
-    x = my_random_float();
-    printf ("%lf\n", x);
-  }
+    for (i=0; i<10000; i++) {
+        x = my_random_float();
+        printf ("%lf\n", x);
+    }
 
-  return 0;
+    return 0;
 }

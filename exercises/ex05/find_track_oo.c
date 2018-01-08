@@ -26,40 +26,40 @@ typedef struct {
 
 
 /* Returns a new Regex that matches the given pattern.
- *
- * pattern: string regex
- * flags: flags passed to regcomp
- * returns: new Regex 
- */
+*
+* pattern: string regex
+* flags: flags passed to regcomp
+* returns: new Regex
+*/
 Regex *make_regex(char *pattern, int flags) {
     // FILL THIS IN!
     return NULL;
 }
 
 /* Checks whether a regex matches a string.
- *
- * regex: Regex
- * s: string
- * returns: 1 if there's a match, 0 otherwise
- */
+*
+* regex: Regex
+* s: string
+* returns: 1 if there's a match, 0 otherwise
+*/
 int regex_match(Regex *regex, char *s) {
     // FILL THIS IN!
     return 0;
 }
 
 /* Frees a Regex.
- *
- * regex: Regex
- */
+*
+* regex: Regex
+*/
 void regex_free(Regex *regex) {
     // FILL THIS IN!
 }
 
 
 /* Finds all tracks that match the given pattern.
- *
- * Prints track number and title.
- */
+*
+* Prints track number and title.
+*/
 void find_track_regex(char pattern[])
 {
     int i;
@@ -67,9 +67,9 @@ void find_track_regex(char pattern[])
     Regex *regex = make_regex(pattern, REG_EXTENDED | REG_NOSUB);
 
     for (i=0; i<NUM_TRACKS; i++) {
-	if (regex_match(regex, tracks[i])) {
-	    printf("Track %i: '%s'\n", i, tracks[i]);
-	}
+        if (regex_match(regex, tracks[i])) {
+            printf("Track %i: '%s'\n", i, tracks[i]);
+        }
     }
 
     regex_free(regex);

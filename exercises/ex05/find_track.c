@@ -21,9 +21,9 @@ char tracks[][80] = {
 
 
 /* Finds all tracks that match the given pattern.
- *
- * Prints track number and title.
- */
+*
+* Prints track number and title.
+*/
 void find_track_regex(char pattern[])
 {
     int i;
@@ -39,20 +39,20 @@ void find_track_regex(char pattern[])
 
     for (i=0; i<NUM_TRACKS; i++) {
         ret = regexec(&regex, tracks[i], 0, NULL, 0);
-	if (!ret) {
-	    printf("Track %i: '%s'\n", i, tracks[i]);
-	} else if (ret == REG_NOMATCH) {
-	    continue;
-	} else {
-           regerror(ret, &regex, msgbuf, sizeof(msgbuf));
-           fprintf(stderr, "Regex match failed: %s\n", msgbuf);
-	   exit(1);
-	}
+        if (!ret) {
+            printf("Track %i: '%s'\n", i, tracks[i]);
+        } else if (ret == REG_NOMATCH) {
+            continue;
+        } else {
+            regerror(ret, &regex, msgbuf, sizeof(msgbuf));
+            fprintf(stderr, "Regex match failed: %s\n", msgbuf);
+            exit(1);
+        }
     }
 
     /* I'm not sure this is necessary, but it's possible that if you
-       let regex go out of scope without running regfree, it leaks
-       (that is, leaves some allocated memory unfreed). */
+    let regex go out of scope without running regfree, it leaks
+    (that is, leaves some allocated memory unfreed). */
     regfree(&regex);
 }
 

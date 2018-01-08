@@ -26,9 +26,9 @@ void find_track(char search_for[])
 {
     int i;
     for (i=0; i<NUM_TRACKS; i++) {
-	if (strstr(tracks[i], search_for)) {
-	    printf("Track %i: '%s'\n", i, tracks[i]);
-	}
+        if (strstr(tracks[i], search_for)) {
+            printf("Track %i: '%s'\n", i, tracks[i]);
+        }
     }
 }
 
@@ -45,7 +45,7 @@ void rstrip(char s[])
 {
     char *ptr = strchr(s, '\n');
     if (ptr) {
-	*ptr = '\0';
+        *ptr = '\0';
     }
 }
 

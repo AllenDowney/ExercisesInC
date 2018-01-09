@@ -1,8 +1,8 @@
 /*     This file contains an example program from The Little Book of
-       Semaphores, available from Green Tea Press, greenteapress.com
+Semaphores, available from Green Tea Press, greenteapress.com
 
-       Copyright 2014 Allen B. Downey
-       License: Creative Commons Attribution-ShareAlike 3.0
+Copyright 2014 Allen B. Downey
+License: Creative Commons Attribution-ShareAlike 3.0
 */
 
 #include <stdio.h>
@@ -15,12 +15,12 @@
 // UTILITY FUNCTIONS
 
 /*  perror_exit
- *  
- *  Prints an error message and exits.
- *
- *  s: message to print
- *
- */
+*
+*  Prints an error message and exits.
+*
+*  s: message to print
+*
+*/
 void perror_exit (char *s)
 {
     perror (s);
@@ -28,12 +28,12 @@ void perror_exit (char *s)
 }
 
 /*  check_malloc
- *  
- *  Calls malloc and checks the result.
- *
- *  size: number of bytes to allocate
- *
- */
+*
+*  Calls malloc and checks the result.
+*
+*  size: number of bytes to allocate
+*
+*/
 void *check_malloc(int size)
 {
     void *p = malloc (size);
@@ -46,13 +46,13 @@ void *check_malloc(int size)
 typedef sem_t Semaphore;
 
 /*  make_semaphore
- *  
- *  Allocates and initializes a Semaphore.
- *
- *  n: initial value
- *
- *  returns: pointer to new Semaphore
- */
+*
+*  Allocates and initializes a Semaphore.
+*
+*  n: initial value
+*
+*  returns: pointer to new Semaphore
+*/
 Semaphore *make_semaphore (int n)
 {
     Semaphore *sem = check_malloc (sizeof(Semaphore));
@@ -62,13 +62,13 @@ Semaphore *make_semaphore (int n)
 }
 
 /*  sem_signal
- *  
- *  Signals a semaphore.
- *
- *  sem: pointer to Semaphore
- *
- *  returns: 0 on success, -1 on error
- */
+*
+*  Signals a semaphore.
+*
+*  sem: pointer to Semaphore
+*
+*  returns: 0 on success, -1 on error
+*/
 int sem_signal(Semaphore *sem)
 {
     return sem_post(sem);
@@ -83,13 +83,13 @@ typedef struct {
 } Shared;
 
 /*  make_shared
- *  
- *  Initializes the environment shared by threads.
- *
- *  end: size of the shared array
- *
- *  returns: pointer to new Shared
- */
+*
+*  Initializes the environment shared by threads.
+*
+*  end: size of the shared array
+*
+*  returns: pointer to new Shared
+*/
 Shared *make_shared (int end)
 {
     int i;
@@ -97,7 +97,7 @@ Shared *make_shared (int end)
 
     shared->counter = 0;
     shared->end = end;
-  
+
     shared->array = check_malloc (shared->end * sizeof(int));
     for (i=0; i<shared->end; i++) {
         shared->array[i] = 0;
@@ -106,15 +106,15 @@ Shared *make_shared (int end)
 }
 
 /*  make_thread
- *  
- *  Allocates and initializes a POSIX thread.
- *
- *  entry: pointer to the entry function
- *  shared: pointer to the shared environment
- *
- *  returns: ID of the new thread, which has integer semantics
- *
- */
+*
+*  Allocates and initializes a POSIX thread.
+*
+*  entry: pointer to the entry function
+*  shared: pointer to the shared environment
+*
+*  returns: ID of the new thread, which has integer semantics
+*
+*/
 pthread_t make_thread(void *(*entry)(void *), Shared *shared)
 {
     int ret;
@@ -126,12 +126,12 @@ pthread_t make_thread(void *(*entry)(void *), Shared *shared)
 }
 
 /*  join_thread
- *  
- *  Waits for the given thread to exit.
- *
- *  thread: ID of the thread we should wait for
- *
- */
+*
+*  Waits for the given thread to exit.
+*
+*  thread: ID of the thread we should wait for
+*
+*/
 void join_thread (pthread_t thread)
 {
     int ret = pthread_join (thread, NULL);
@@ -139,43 +139,43 @@ void join_thread (pthread_t thread)
 }
 
 /*  child_code
- *  
- *  Increments the values in an array.
- *
- *  If access to shared->counter is synchonized, every element in
- *  the array should be incremented exactly once.
- *
- *  If there are race conditions, some elements will be incremented
- *  zero times or more than once.  We can detect these synchronization
- *  errors by inspecting the array after all threads exit.
- *
- *  shared: pointer to shared environment
- *
- */
+*
+*  Increments the values in an array.
+*
+*  If access to shared->counter is synchonized, every element in
+*  the array should be incremented exactly once.
+*
+*  If there are race conditions, some elements will be incremented
+*  zero times or more than once.  We can detect these synchronization
+*  errors by inspecting the array after all threads exit.
+*
+*  shared: pointer to shared environment
+*
+*/
 void child_code (Shared *shared)
 {
     printf ("Starting child at counter %d\n", shared->counter);
 
     while (1) {
-	    if (shared->counter >= shared->end) {
-	        return;
-	    }
-	    shared->array[shared->counter]++;
-	    shared->counter++;
+        if (shared->counter >= shared->end) {
+            return;
+        }
+        shared->array[shared->counter]++;
+        shared->counter++;
 
-	    if (shared->counter % 100000 == 0) {
-	        printf ("%d\n", shared->counter);
-	    }
+        if (shared->counter % 100000 == 0) {
+            printf ("%d\n", shared->counter);
+        }
     }
 }
 
 /*  entry
- *  
- *  Starting point for child threads,
- *
- *  arg: pointer to the shared environment
- *
- */
+*
+*  Starting point for child threads,
+*
+*  arg: pointer to the shared environment
+*
+*/
 void *entry (void *arg)
 {
     Shared *shared = (Shared *) arg;
@@ -185,13 +185,13 @@ void *entry (void *arg)
 }
 
 /*  check_array
- *  
- *  Checks whether every element of the shared array is 1.
- *  Prints the number of synchronization errors.
- *
- *  shared: pointer to shared environment
- *
- */
+*
+*  Checks whether every element of the shared array is 1.
+*  Prints the number of synchronization errors.
+*
+*  shared: pointer to shared environment
+*
+*/
 void check_array (Shared *shared)
 {
     int i, errors=0;
@@ -199,16 +199,16 @@ void check_array (Shared *shared)
     printf ("Checking...\n");
 
     for (i=0; i<shared->end; i++) {
-	    if (shared->array[i] != 1) errors++;
+        if (shared->array[i] != 1) errors++;
     }
     printf ("%d errors.\n", errors);
 }
 
 /*  main
- *  
- *  Creates the given number of children and runs them concurrently.
- *
- */
+*
+*  Creates the given number of children and runs them concurrently.
+*
+*/
 int main ()
 {
     int i;
@@ -217,11 +217,11 @@ int main ()
     Shared *shared = make_shared (100000000);
 
     for (i=0; i<NUM_CHILDREN; i++) {
-	child[i] = make_thread (entry, shared);
+        child[i] = make_thread (entry, shared);
     }
 
     for (i=0; i<NUM_CHILDREN; i++) {
-	    join_thread (child[i]);
+        join_thread (child[i]);
     }
 
     check_array (shared);

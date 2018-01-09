@@ -17,12 +17,12 @@ typedef struct node {
 
 
 /* Makes a new node structure.
- * 
- * val: value to store in the node.
- * next: pointer to the next node
- *
- * returns: pointer to a new node
- */
+*
+* val: value to store in the node.
+* next: pointer to the next node
+*
+* returns: pointer to a new node
+*/
 Node *make_node(int val, Node *next) {
     Node *node = malloc(sizeof(Node));
     node->val = val;
@@ -32,9 +32,9 @@ Node *make_node(int val, Node *next) {
 
 
 /* Prints the values in a list.
- * 
- * list: pointer to pointer to Node
- */
+*
+* list: pointer to pointer to Node
+*/
 void print_list(Node **list) {
     Node *current = *list;
 
@@ -48,11 +48,11 @@ void print_list(Node **list) {
 
 
 /* Removes and returns the first element of a list.
- * 
- * list: pointer to pointer to Node
- *
- * returns: int or -1 if the list is empty
- */
+*
+* list: pointer to pointer to Node
+*
+* returns: int or -1 if the list is empty
+*/
 int pop(Node **list) {
     // FILL THIS IN!
     return 0;
@@ -60,24 +60,24 @@ int pop(Node **list) {
 
 
 /* Adds a new element to the beginning of the list.
- * 
- * list: pointer to pointer to Node
- * val: value to add
- */
+*
+* list: pointer to pointer to Node
+* val: value to add
+*/
 void push(Node **list, int val) {
     // FILL THIS IN!
 }
 
 
 /* Removes the first element with the given value
- * 
- * Frees the removed node.
- *
- * list: pointer to pointer to Node
- * val: value to remove
- *
- * returns: number of nodes removed
- */
+*
+* Frees the removed node.
+*
+* list: pointer to pointer to Node
+* val: value to remove
+*
+* returns: number of nodes removed
+*/
 int remove_by_value(Node **list, int val) {
     // FILL THIS IN!
     return 0;
@@ -85,11 +85,11 @@ int remove_by_value(Node **list, int val) {
 
 
 /* Reverses the elements of the list.
- *
- * Does not allocate or free nodes.
- * 
- * list: pointer to pointer to Node
- */
+*
+* Does not allocate or free nodes.
+*
+* list: pointer to pointer to Node
+*/
 void reverse(Node **list) {
     // FILL THIS IN!
 }

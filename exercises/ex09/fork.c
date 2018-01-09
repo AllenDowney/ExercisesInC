@@ -3,7 +3,7 @@
 Copyright 2016 Allen B. Downey
 License: MIT License https://opensource.org/licenses/MIT
 
- */
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,7 +30,7 @@ double get_seconds() {
 }
 
 
-void child_code(int i) 
+void child_code(int i)
 {
     sleep(i);
     printf("Hello from child %d.\n", i);
@@ -50,52 +50,52 @@ int main(int argc, char *argv[])
     // the first command-line argument is the name of the executable.
     // if there is a second, it is the number of children to create.
     if (argc == 2) {
-      num_children = atoi(argv[1]);
+        num_children = atoi(argv[1]);
     } else {
-      num_children = 1;
+        num_children = 1;
     }
-    
+
     // get the start time
     start = get_seconds();
-    
+
     for (i=0; i<num_children; i++) {
-      
+
         // create a child process
         printf("Creating child %d.\n", i);
-	pid = fork();
-      
-	/* check for an error */
-	if (pid == -1) {
-	    fprintf(stderr, "fork failed: %s\n", strerror(errno));
-	    perror(argv[0]);
-	    exit(1);
-	}
-      
-	/* see if we're the parent or the child */
-	if (pid == 0) {
-	  child_code(i);
-	}
+        pid = fork();
+
+        /* check for an error */
+        if (pid == -1) {
+            fprintf(stderr, "fork failed: %s\n", strerror(errno));
+            perror(argv[0]);
+            exit(1);
+        }
+
+        /* see if we're the parent or the child */
+        if (pid == 0) {
+            child_code(i);
+        }
     }
-    
+
     /* parent continues */
     printf("Hello from the parent.\n");
-    
+
     for (i=0; i<num_children; i++) {
         pid = wait(&status);
-      
-	if (pid == -1) {
-	    fprintf(stderr, "wait failed: %s\n", strerror(errno));
-	    perror(argv[0]);
-	    exit(1);
-	}
-	
-	// check the exit status of the child
-	status = WEXITSTATUS(status);
-	printf("Child %d exited with error code %d.\n", pid, status);
+
+        if (pid == -1) {
+            fprintf(stderr, "wait failed: %s\n", strerror(errno));
+            perror(argv[0]);
+            exit(1);
+        }
+
+        // check the exit status of the child
+        status = WEXITSTATUS(status);
+        printf("Child %d exited with error code %d.\n", pid, status);
     }
     // compute the elapsed time
     stop = get_seconds();
     printf("Elapsed time = %f seconds.\n", stop - start);
-    
+
     exit(0);
 }

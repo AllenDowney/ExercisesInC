@@ -23,7 +23,7 @@ int open_socket(char *host, char *port)
     struct addrinfo *res;
     struct addrinfo hints;
     int d_sock, c;
-    
+
     memset(&hints, 0, sizeof(hints));
     hints.ai_family = PF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
@@ -31,12 +31,12 @@ int open_socket(char *host, char *port)
 	error("Can't resolve the address");
     if (( d_sock = socket(res->ai_family, res->ai_socktype, res->ai_protocol)) == -1)
 	error("Can't open socket");
-    
+
     c = connect(d_sock, res->ai_addr, res->ai_addrlen);
     freeaddrinfo(res);
     if (c == -1)
 	error("Can't connect to the socket");
-    
+
     return d_sock;
 }
 
@@ -45,7 +45,7 @@ int say(int socket, char *s)
     int result = send(socket, s, strlen(s), 0);
     if (result == -1)
 	error("Can't talk to the server");
-    
+
     return result;
 }
 
@@ -69,12 +69,12 @@ int main(int argc, char *argv[])
     while (bytes_received) {
 	if (bytes_received == EOF)
 	    error("can't read from server");
-	
+
 	rec[bytes_received] = '\0';
 	printf("%s", rec);
 	bytes_received = recv(d_sock, rec, 255, 0);
     }
     close(d_sock);
-    
+
     return 0;
 }

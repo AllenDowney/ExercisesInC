@@ -41,7 +41,7 @@ int main ()
     // and it catches use after free
     free(use_after_free);
     *use_after_free = 17;
-    
+
     // never_free is definitely lost
     *never_free = 17;
 
@@ -50,7 +50,7 @@ int main ()
 
     // but this one doesn't
     free_anything(&never_allocated);
-    
+
     free(free_twice);
     free(free_twice);
 

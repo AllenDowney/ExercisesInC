@@ -2,9 +2,7 @@
 
 ### C Exercises
 
-[Here is my updated version of cards.c](https://REPLACE/THIS/LINK)
-
-[Here is my updated version of hello.c](https://REPLACE/THIS/LINK)
+[Here is a link to the ex01 directory in my repository](https://github.com/YOUR_GITHUB_USERNAME_HERE/ExercisesInC/tree/master/exercises/ex01)
 
 ### Think OS Chapter 1 reading questions
 

@@ -2,10 +2,10 @@
 
 ### C Exercises
 
-Modify the link below so it points to the `ex03` directory in your
+Modify the link below so it points to the `ex02.5` directory in your
 student repository.
 
-[Here is a link to the ex03 directory in my repository](https://github.com/YOUR_GITHUB_USERNAME_HERE/ExercisesInC/tree/master/exercises/ex03)
+[Here is a link to the ex02.5 directory in my repository](https://github.com/YOUR_GITHUB_USERNAME_HERE/ExercisesInC/tree/master/exercises/ex02.5)
 
 ### Think OS Chapter 3 reading questions
 
@@ -16,7 +16,7 @@ student repository.
 2) In the UTF-16 character encoding, the binary representation of a character can take up to 32 bits.  
 Ignoring the details of the encoding scheme, how many different characters can be represented?
 
-3) What is the difference between "memory" and "storage" as defined in Think OS?
+3) What is the difference between "memory" and "storage" as defined in *Think OS*?
 
 4) What is the difference between a GiB and a GB?  What is the percentage difference in their sizes?
 

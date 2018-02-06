@@ -5,6 +5,10 @@ License: GNU GPLv3
 
 */
 
+// Expected output:  If an array was returned before the fault, this program
+// would print out five 42's.  However, the program happens to create these
+// two arrays at the exact same address, causing a segmentation fault.
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,7 +18,7 @@ int *foo() {
     int i;
     int array[SIZE];
 
-    //printf("%p\n", array);
+    printf("%p\n", array);
 
     for (i=0; i<SIZE; i++) {
         array[i] = 42;
@@ -26,7 +30,7 @@ void bar() {
     int i;
     int array[SIZE];
 
-    //printf("%p\n", array);
+    printf("%p\n", array);
 
     for (i=0; i<SIZE; i++) {
         array[i] = i;

@@ -7,7 +7,7 @@ student repository.
 
 [Here is a link to the ex02 directory in my repository](https://github.com/YOUR_GITHUB_USERNAME_HERE/ExercisesInC/tree/master/exercises/ex02)
 
-### Think OS Chapter 1 reading questions
+### Think OS Chapter 2 reading questions
 
 For each of the reading questions below, write answers in the form of
 a clear, concise, complete sentence or two.

@@ -1,6 +1,21 @@
 /* Example code for Exercises in C.
 
-Add two BigInts, represented as strings of decimal digits.
+This program shows a way to represent a BigInt type (arbitrary length integers)
+using C strings, with numbers represents as a string of decimal digits in reverse order.
+
+Follow these steps to get this program working:
+
+1) Read through the whole program so you understand the design.
+
+2) Compile and run the program.  It should run three tests, and they should fail.
+
+3) Fill in the body of reverse_string().  When you get it working, the first test should pass.
+
+4) Fill in the body of ctoi().  When you get it working, the second test should pass.
+
+5) Fill in the body of add_digits().  When you get it working, the third test should pass.
+
+6) Uncomment the last test in main.  If your three previous tests pass, this one should, too.
 
 */
 
@@ -18,7 +33,7 @@ returns: string
 */
 char *reverse_string(char *s) {
     //TODO: Fill this in.
-    return NULL;
+    return "";
 }
 
 /* ctoi: Converts a character to integer.
@@ -77,9 +92,10 @@ void add_bigint(BigInt x, BigInt y, char carry_in, BigInt z) {
     int dx=1, dy=1, dz=1;
     char a, b;
 
-    //TODO: Modify this function to allocate and return z rather
-    //      than taking an empty buffer as a parameter.
-    //      Hint: you might need a helper function.
+    /* OPTIONAL TODO: Modify this function to allocate and return z
+    *  rather than taking an empty buffer as a parameter.
+    *  Hint: you might need a helper function.
+    */
 
     if (*x == '\0') {
         a = '0';
@@ -133,24 +149,61 @@ BigInt make_bigint(char *s) {
     return (BigInt) r;
 }
 
-int main (int argc, char *argv[])
-{
+void test_reverse_string() {
+    char *s = "123";
+    char *t = reverse_string(s);
+    if (strcmp(t, "321") == 0) {
+        printf("reverse_string passed\n");
+    } else {
+        printf("reverse_string failed\n");
+    }
+}
+
+void test_itoc() {
+    char c = itoc(3);
+    if (c == '3') {
+        printf("itoc passed\n");
+    } else {
+        printf("itoc failed\n");
+    }
+}
+
+void test_add_digits() {
+    char total, carry;
+    add_digits('7', '4', '1', &total, &carry);
+    if (total == '2' && carry == '1') {
+        printf("add_digits passed\n");
+    } else {
+        printf("add_digits failed\n");
+    }
+}
+
+void test_add_bigint() {
     char *s = "1";
     char *t = "99999999999999999999999999999999999999999999";
-    char total, carry;
+    char *res = "000000000000000000000000000000000000000000001";
+
+    BigInt big1 = make_bigint(s);    
+    BigInt big2 = make_bigint(t);
     BigInt big3 = malloc(100);
 
-    BigInt big1 = make_bigint(s);
-    print_bigint(big1);
-    printf("\n");
+	add_bigint(big1, big2, '0', big3);
+    
+    if (strcmp(big3, res) == 0) {
+        printf("add_bigint passed\n");
+    } else {
+        printf("add_bigint failed\n");
+    }
+}
 
-    BigInt big2 = make_bigint(t);
-    print_bigint(big2);
-    printf("\n");
+int main (int argc, char *argv[])
+{
+    test_reverse_string();
+    test_itoc();
+    test_add_digits();
 
-    add_bigint(big1, big2, '0', big3);
-    print_bigint(big3);
-    printf("\n");
-
+    //TODO: When you have the first three functions working,
+    //      uncomment the following, and it should work.
+    // test_add_bigint();
     return 0;
 }

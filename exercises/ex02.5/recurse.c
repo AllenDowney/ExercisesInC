@@ -38,10 +38,10 @@ int fibonacci(int n) {
 int main (int argc, char *argv[])
 {
     int res = factorial(4);
-    printf("factorial(3) = %d\n", res);
+    printf("factorial(4) = %d\n", res);
 
     int res2 = fibonacci(4);
-    printf("fibonacci(3) = %d\n", res2);
+    printf("fibonacci(4) = %d\n", res2);
 
     printf("Location of factorial code is %p\n", factorial);
     printf("Location of fibonacci code is %p\n", fibonacci);

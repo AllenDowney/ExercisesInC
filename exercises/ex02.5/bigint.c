@@ -11,7 +11,7 @@ Follow these steps to get this program working:
 
 3) Fill in the body of reverse_string().  When you get it working, the first test should pass.
 
-4) Fill in the body of ctoi().  When you get it working, the second test should pass.
+4) Fill in the body of itoc().  When you get it working, the second test should pass.
 
 5) Fill in the body of add_digits().  When you get it working, the third test should pass.
 

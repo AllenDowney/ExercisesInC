@@ -9,7 +9,7 @@ student repository.
 
 ### Think OS Chapter 4 reading questions
 
-## Files and file systems
+**Files and file systems**
 
 1) What abstractions do file systems provide?  Give an example of something that is logically 
 true about files systems but not true of their implementations.

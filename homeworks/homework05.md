@@ -20,7 +20,7 @@ Try it out and confirm that the result is interpreted as -12.
 3) Can you guess why IEEE floating-point uses biased integers to represent the exponent rather than a
 sign bit or two's complement?
 
-4) Following the example in Section 5.4, write the 32-bit binary representation of -13 in single precision 
+4) Following the example in Section 5.3, write the 32-bit binary representation of -13 in single precision 
 IEEE floating-point.  What would you get if you accidentally interpreted this value as an integer?
 
 5) Write a function that takes a string and converts from lower-case to upper-case by flipping the sixth bit.  

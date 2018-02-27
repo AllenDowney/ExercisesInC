@@ -1,0 +1,49 @@
+TROUT is a simple version of traceroute.
+
+It is based on code written by W. Richard Stevens and published in
+"UNIX Network Programming Volume 1, Second Edition Networking APIs:
+Sockets and XTI," Prentice Hall PTR, Upper Saddle River, NJ 07458.
+
+It has been modified a fair amount by Allen Downey
+(downey@colby.edu).  Among other things, I did the following
+
+1) I collected all the procedures from Stevens's extensive library
+   and put them in util.c, and put their prototypes in trout.h
+
+2) I killed all the IPv6 support, because I didn't need it and
+   because I hate ifdefs and pointers to functions.
+
+3) For the same reason, I took out some of the configuration
+   ifdefs.  As a result, I don't know if this will still run
+   on anything other than Linux.
+
+4) I fixed a race condition that may or may not have been the
+   cause of some early problems I had.  Anyway, the fix also
+   came from Stevens, in Section 18.5 of Unix Network Programming.
+
+5) I split things up into more procedures.
+
+The copyright for the original code is held by Prentice Hall,
+but they make it available under a license that is more or
+less identical to the GNU GPL.
+
+This version is Copyright (C) 1999 Allen B. Downey.
+
+I am making it available under the GNU General Public License
+(which does not, I think, violate the original copyright).
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+

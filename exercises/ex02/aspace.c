@@ -14,13 +14,13 @@ int main ()
 {
     int var2 = 5;
     void *p = malloc(128);
-    char *s = "Literal string";
+    char *s = "Hello, World";
 
     printf ("Address of main is %p\n", main);
     printf ("Address of var1 is %p\n", &var1);
     printf ("Address of var2 is %p\n", &var2);
-    printf ("Address of p is %p\n", p);
-    printf ("Address of s is %p\n", s);
+    printf ("p points to %p\n", p);
+    printf ("s points to %p\n", s);
 
     return 0;
 }

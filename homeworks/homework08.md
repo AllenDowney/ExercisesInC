@@ -21,7 +21,7 @@ student repository.
 
 5) Why might a scheduler want to give higher priority to an I/O bound process?
 
-When I make French toast, I usually make a batch of 12 slices.  But my griddle only has room for 8 slices. 
+6) When I make French toast, I usually make a batch of 12 slices.  But my griddle only has room for 8 slices. 
 Each piece of toast has to cook for 5 minutes on each side.  How can I schedule 12 slices onto 8 "cores"
 to minimize the elapsed time to cook all 12 slices?  (Note: this question is not hypothetical; 
 this is really how I make French toast.)

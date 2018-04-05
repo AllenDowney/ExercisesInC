@@ -34,7 +34,6 @@ void child_code(int i)
 {
     sleep(i);
     printf("Hello from child %d.\n", i);
-    exit(i);
 }
 
 // main takes two parameters: argc is the number of command-line
@@ -74,6 +73,7 @@ int main(int argc, char *argv[])
         /* see if we're the parent or the child */
         if (pid == 0) {
             child_code(i);
+            exit(i);
         }
     }
 

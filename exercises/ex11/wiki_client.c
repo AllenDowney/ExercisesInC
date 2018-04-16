@@ -1,6 +1,6 @@
 /* Code from Head First C.
 
- */
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,14 +28,14 @@ int open_socket(char *host, char *port)
     hints.ai_family = PF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
     if (getaddrinfo(host, port, &hints, &res) == -1)
-	error("Can't resolve the address");
+        error("Can't resolve the address");
     if (( d_sock = socket(res->ai_family, res->ai_socktype, res->ai_protocol)) == -1)
-	error("Can't open socket");
+        error("Can't open socket");
 
     c = connect(d_sock, res->ai_addr, res->ai_addrlen);
     freeaddrinfo(res);
     if (c == -1)
-	error("Can't connect to the socket");
+        error("Can't connect to the socket");
 
     return d_sock;
 }
@@ -44,7 +44,7 @@ int say(int socket, char *s)
 {
     int result = send(socket, s, strlen(s), 0);
     if (result == -1)
-	error("Can't talk to the server");
+        error("Can't talk to the server");
 
     return result;
 }
@@ -67,12 +67,12 @@ int main(int argc, char *argv[])
     /* display page on stdout in 255 byte chunks */
     bytes_received = recv(d_sock, rec, 255, 0);
     while (bytes_received) {
-	if (bytes_received == EOF)
-	    error("can't read from server");
+        if (bytes_received == EOF)
+            error("can't read from server");
 
-	rec[bytes_received] = '\0';
-	printf("%s", rec);
-	bytes_received = recv(d_sock, rec, 255, 0);
+        rec[bytes_received] = '\0';
+        printf("%s", rec);
+        bytes_received = recv(d_sock, rec, 255, 0);
     }
     close(d_sock);
 

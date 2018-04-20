@@ -1,6 +1,8 @@
 /* Example code for Exercises in C.
 
-Copyright 2014 Allen Downey
+Based on an example from http://www.learn-c.org/en/Linked_lists
+
+Copyright 2016 Allen Downey
 License: Creative Commons Attribution-ShareAlike 3.0
 
 */
@@ -9,12 +11,19 @@ License: Creative Commons Attribution-ShareAlike 3.0
 #include <stdlib.h>
 #include <assert.h>
 
-
 typedef struct node {
     int val;
-    struct node * next;
+    struct node *next;
 } Node;
 
+
+/* Makes a new node structure.
+*
+* val: value to store in the node.
+* next: pointer to the next node
+*
+* returns: pointer to a new node
+*/
 Node *make_node(int val, Node *next) {
     Node *node = malloc(sizeof(Node));
     node->val = val;
@@ -22,64 +31,96 @@ Node *make_node(int val, Node *next) {
     return node;
 }
 
-void print_list(Node *head) {
-    Node *current = head;
+/* Prints the values in a list.
+*
+* list: pointer to pointer to Node
+*/
+void print_list(Node **list) {
+    Node *current = *list;
 
+    printf("[ ");
     while (current != NULL) {
-        printf("%d\n", current->val);
+        printf("%d ", current->val);
         current = current->next;
     }
+    printf("]\n");
 }
 
-int pop(Node **head) {
-    int retval;
-    Node *next_node;
 
-    if (*head == NULL) {
+/* Removes and returns the first element of a list.
+*
+* list: pointer to pointer to Node
+*
+* returns: int or -1 if the list is empty
+*/
+int pop(Node **list) {
+    int retval;
+    Node *head = *list;
+
+    if (head == NULL) {
         return -1;
     }
 
-    next_node = (*head)->next;
-    retval = (*head)->val;
-    *head = next_node;
+    Node *next_node = head->next;
+    retval = head->val;
+    free(head);
+    *list = next_node;
 
     return retval;
 }
 
-// Add a new element to the beginning of the list.
-void push(Node **head, int val) {
-    Node *new_node = make_node(val, *head);
-    *head = new_node;
+
+/* Adds a new element to the beginning of the list.
+*
+* list: pointer to pointer to Node
+* val: value to add
+*/
+void push(Node **list, int val) {
+    Node *new_node = make_node(val, *list);
+    *list = new_node;
 }
 
-// Remove the first element with the given value; return the number
-// of nodes removed.
-int remove_by_value(Node **head, int val) {
-    Node *node = *head;
-    Node *victim;
+
+/* Removes the first element with the given value
+*
+* Frees the removed node.
+*
+* list: pointer to pointer to Node
+* val: value to remove
+*
+* returns: number of nodes removed
+*/
+int remove_by_value(Node **list, int val) {
+    Node *node = *list;
 
     if (node == NULL) {
         return 0;
     }
 
     if (node->val == val) {
-        pop(head);
+        pop(list);
         return 1;
     }
 
     for(; node->next != NULL; node = node->next) {
         if (node->next->val == val) {
-            victim = node->next;
+            Node *victim = node->next;
             node->next = victim->next;
+            free(victim);
             return 1;
         }
     }
     return 0;
 }
 
-// Reverse the elements of the list without allocating new nodes.
-void reverse(Node **head) {
-    Node *node = *head;
+/* Reverses the elements of the list.
+*
+* Does not allocate or free nodes.
+*
+* list: pointer to pointer to Node
+*/
+void reverse(Node **list) {
+    Node *node = *list;
     Node *next, *temp;
 
     if (node == NULL || node->next == NULL) {
@@ -95,13 +136,18 @@ void reverse(Node **head) {
         node = next;
         next = temp;
     }
-    *head = node;
+    *list = node;
 }
 
-// Adds a new element to the list before the indexed element.
-// Index 0 adds an element to the beginning.  Index 1 adds an
-// element between the first and second elements.
-// Returns 0 if successful, -1 if the index is out of range.
+
+
+/* Adds a new element to the list before the indexed element.
+
+Index 0 adds an element to the beginning.
+Index 1 adds an element between the first and second elements.
+
+Returns 0 if successful, -1 if the index is out of range.
+*/
 int insert_by_index(Node **head, int val, int index) {
     int i;
     Node *node = *head;
@@ -120,7 +166,8 @@ int insert_by_index(Node **head, int val, int index) {
     return 0;
 }
 
-// Makes a mysterious data structure.
+/* Makes a mysterious data structure.
+*/
 Node *make_something() {
     Node *node1 = make_node(1, NULL);
     Node *node2 = make_node(2, NULL);
@@ -132,6 +179,7 @@ Node *make_something() {
 
     return node3;
 }
+
 
 int main() {
     // make a list of even numbers
@@ -150,7 +198,7 @@ int main() {
     assert(res == -1);
 
     printf("test_list\n");
-    print_list(test_list);
+    print_list(&test_list);
 
     // make an empty list
     printf("empty\n");
@@ -158,7 +206,7 @@ int main() {
 
     // add an element to the empty list
     insert_by_index(&empty, 1, 0);
-    print_list(empty);
+    print_list(&empty);
 
     Node *something = make_something();
     free(something);

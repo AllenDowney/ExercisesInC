@@ -61,3 +61,8 @@ void cond_signal(Cond *cond) {
     int n = pthread_cond_signal(cond);
     if (n != 0) perror_exit("cond_signal failed");
 }
+
+void cond_broadcast(Cond *cond) {
+    int n = pthread_cond_broadcast(cond);
+    if (n != 0) perror_exit("cond_broadcast failed");
+}

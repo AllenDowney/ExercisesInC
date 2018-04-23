@@ -19,3 +19,4 @@ void mutex_unlock(Mutex *mutex);
 Cond *make_cond();
 void cond_wait(Cond *cond, Mutex *mutex);
 void cond_signal(Cond *cond);
+void cond_broadcast(Cond *cond);

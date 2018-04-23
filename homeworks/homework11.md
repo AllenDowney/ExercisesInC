@@ -18,7 +18,7 @@ student repository.
 4) In my solution to the producers-consumers problem using Semaphores,
 what does it mean if the value of `queue->spaces` is `3` at some point in time?
 
-5) What does it mean if `queue->space` is `-3`?
+5) What does it mean if `queue->spaces` is `-3`?
 
 6) Why doesn't `queue_pop` have to use `queue_empty` to check whether the queue is empty?
 

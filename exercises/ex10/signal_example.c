@@ -62,17 +62,19 @@ int main(void) {
     srandom((unsigned int) time(NULL));
 
     while(1) {
+        // pose the question
         a = rand() % 11;
         b = rand() % 11;
         printf("\nWhat is %d times %d? ", a, b);
 
+        // set (or reset) the alarm
         alarm(5);
-	    while (1) {
-	        char *ret = fgets(txt, 4, stdin);
-	        if (ret) break;
-	    }
 
+        // get the answer
+	    char *ret = fgets(txt, 4, stdin);
         answer = atoi(txt);
+
+        // check the answer
         if (answer == a * b) {
             printf("\nRight!\n");
             score++;

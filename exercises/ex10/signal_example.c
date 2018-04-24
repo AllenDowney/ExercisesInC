@@ -20,6 +20,11 @@ Based on an example in Head First C.
 
 int score = 0;
 
+/* Set up a signal handler.
+
+   sig: signal number
+   handler: signal handler function
+*/
 int catch_signal(int sig, void (*handler) (int)) {
     struct sigaction action;
     action.sa_handler = handler;
@@ -28,12 +33,16 @@ int catch_signal(int sig, void (*handler) (int)) {
     return sigaction(sig, &action, NULL);
 }
 
+/* Signal handler: End the game.
+ */
 void end_game(int sig)
 {
     printf("\nFinal score: %i\n", score);
     exit(EXIT_SUCCESS);
 }
 
+/* Signal handler: Notify the user and raise SIGINT.
+*/
 void times_up(int sig) {
     puts("\nTIME'S UP!");
     raise(SIGINT);
@@ -42,8 +51,14 @@ void times_up(int sig) {
 int main(void) {
     int a, b, answer;
     char txt[4];
+
+    // when the alarm goes off, call times_up
     catch_signal(SIGALRM, times_up);
+
+    // if we get interrupted, end the game
     catch_signal(SIGINT, end_game);
+
+    // seed the random number generator
     srandom((unsigned int) time(NULL));
 
     while(1) {
@@ -52,14 +67,19 @@ int main(void) {
         printf("\nWhat is %d times %d? ", a, b);
 
         alarm(5);
-        fgets(txt, 4, stdin);
+	    while (1) {
+	        char *ret = fgets(txt, 4, stdin);
+	        if (ret) break;
+	    }
 
         answer = atoi(txt);
         if (answer == a * b) {
+            printf("\nRight!\n");
             score++;
         } else {
-            printf("\nWrong! Score: %i\n", score);
+            printf("\nWrong!\n");
         }
+        printf("Score: %i\n", score);
     }
     return 0;
 }

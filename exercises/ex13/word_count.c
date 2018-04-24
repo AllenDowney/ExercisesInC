@@ -15,13 +15,11 @@ Note: this version leaks memory.
 #include <glib.h>
 #include <glib/gstdio.h>
 
-
 /* Represents a word-frequency pair. */
 typedef struct {
     gint freq;
     gchar *word;
 } Pair;
-
 
 /* Compares two key-value pairs by frequency. */
 gint compare_pair(gpointer v1, gpointer v2, gpointer user_data)
@@ -30,7 +28,6 @@ gint compare_pair(gpointer v1, gpointer v2, gpointer user_data)
     Pair *p2 = (Pair *) v2;
     return p1->freq - p2->freq;
 }
-
 
 /* Iterator that prints pairs. */
 void pair_printor(gpointer value, gpointer user_data)
@@ -41,7 +38,7 @@ void pair_printor(gpointer value, gpointer user_data)
 
 
 /* Iterator that prints keys and values. */
-void printor(gpointer key, gpointer value, gpointer user_data)
+void kv_printor (gpointer key, gpointer value, gpointer user_data)
 {
     printf(user_data, key, *(gint *) value);
 }
@@ -59,7 +56,7 @@ void accumulator(gpointer key, gpointer value, gpointer user_data)
         (gpointer) pair,
         (GCompareDataFunc) compare_pair,
         NULL);
-    }
+}
 
 /* Increments the frequency associated with key. */
 void incr(GHashTable* hash, gchar *key)
@@ -97,7 +94,6 @@ int main(int argc, char** argv)
     gchar **array;
     gchar line[128];
     GHashTable* hash = g_hash_table_new(g_str_hash, g_str_equal);
-    int i;
 
     // read lines from the file and build the hash table
     while (1) {
@@ -105,14 +101,14 @@ int main(int argc, char** argv)
         if (res == NULL) break;
 
         array = g_strsplit(line, " ", 0);
-        for (i=0; array[i] != NULL; i++) {
+        for (int i=0; array[i] != NULL; i++) {
             incr(hash, array[i]);
         }
     }
     fclose(fp);
 
     // print the hash table
-    // g_hash_table_foreach(hash, (GHFunc) printor, "Word %s freq %d\n");
+    // g_hash_table_foreach(hash, (GHFunc) kv_printor, "Word %s freq %d\n");
 
     // iterate the hash table and build the sequence
     GSequence *seq = g_sequence_new(NULL);
@@ -122,7 +118,6 @@ int main(int argc, char** argv)
     g_sequence_foreach(seq, (GFunc) pair_printor, NULL);
 
     // try (unsuccessfully) to free everything
-    // (in a future exercise, we will fix the memory leaks)
     g_hash_table_destroy(hash);
     g_sequence_free(seq);
 

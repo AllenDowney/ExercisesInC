@@ -10,6 +10,8 @@ License: Creative Commons Attribution-ShareAlike 3.0
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <glib.h>
+#include <glib/gstdio.h>
 
 typedef struct node {
     int val;
@@ -178,6 +180,21 @@ Node *make_something() {
     return node3;
 }
 
+/* Frees all nodes in a list.
+*/
+void free_list(Node *node) {
+    if (node == NULL) return;
+    free_list(node->next);
+    free(node);
+}
+
+/* Frees all nodes in a list.
+*/
+void free_list_set(Node *node, GHashTable *set) {
+    for(; node != NULL; node = node->next) {
+        g_hash_table_insert(set, node, NULL);
+    }
+}
 
 int main() {
     // make a list of even numbers
@@ -207,7 +224,28 @@ int main() {
     print_list(&empty);
 
     Node *something = make_something();
-    free(something);
 
+    // free the lists
+    free_list(test_list);
+    free_list(empty);
+    free_list(something);
+
+    // TODO: Suppose we were not sure whether there were any
+    // shared nodes in the lists we just freed.  How could we
+    // free all of the nodes without freeing any of them twice?
+
+    // One option is to make a pass through the lists and make
+    // a HashTable of nodes to be freed and then destroy the HashTable.
+
+    // GHashTable* set = g_hash_table_new_full(g_direct_hash,
+                                             g_direct_equal,
+                                             free,
+                                             NULL);
+    // free_list_set(test_list, set);
+    // free_list_set(empty, set);
+    // free_list_set(something, set);
+
+    // g_hash_table_destroy(set);
+    
     return 0;
 }

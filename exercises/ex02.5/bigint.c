@@ -1,7 +1,7 @@
 /* Example code for Exercises in C.
 
 This program shows a way to represent a BigInt type (arbitrary length integers)
-using C strings, with numbers represents as a string of decimal digits in reverse order.
+using C strings, with numbers represented as a string of decimal digits in reverse order.
 
 Follow these steps to get this program working:
 
@@ -184,12 +184,12 @@ void test_add_bigint() {
     char *t = "99999999999999999999999999999999999999999999";
     char *res = "000000000000000000000000000000000000000000001";
 
-    BigInt big1 = make_bigint(s);    
+    BigInt big1 = make_bigint(s);
     BigInt big2 = make_bigint(t);
     BigInt big3 = malloc(100);
 
-	add_bigint(big1, big2, '0', big3);
-    
+    add_bigint(big1, big2, '0', big3);
+
     if (strcmp(big3, res) == 0) {
         printf("add_bigint passed\n");
     } else {

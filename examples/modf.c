@@ -48,7 +48,7 @@ void test_get_int_part()
 }
 
 
-/* modf_array: Compute the int and frac parts of the elements in an array.
+/* get_both_parts: Compute the int and frac parts of the elements in an array.
 
 array: array of doubles
 length: number of elements in the array

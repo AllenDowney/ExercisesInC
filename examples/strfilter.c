@@ -33,7 +33,7 @@ char *strfilter2(char *string, char *letters) {
     return strdup(buffer);
 }
 
-// TODO: Find everything wrong with the following...
+// TODO: Find everything wrong with the following two functions
 
 char *strfilter3(char *string, char *letters) {
     int length = strlen(string);

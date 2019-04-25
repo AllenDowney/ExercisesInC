@@ -5,7 +5,7 @@ License: GNU GPLv3
 
 TODO: Modify reader_code and writer_code so that any number of
 reader threads can "read the thing" concurrently, but only one
-writer can "writer the thing" at a time, and no readers can read
+writer can "write the thing" at a time, and no readers can read
 concurrently with a writer who is writing.
 
 */

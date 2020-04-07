@@ -53,8 +53,20 @@ void print_list(Node *list) {
 * returns: head of modified list
 */
 Node *pop(Node *list, int *value_p) {
-    // FILL THIS IN
-    return list;
+    // FILL THIS IN!
+    return NULL;
+}
+
+/* Swaps the first two elements of the list.
+*
+* list: pointer to first node
+  value_p: location to store the popped value
+*
+* returns: head of modified list
+*/
+Node *swap(Node *list) {
+    // FILL THIS IN!
+    return NULL;
 }
 
 /* Adds a new element to the beginning of the list.
@@ -70,34 +82,6 @@ Node *push(Node *list, int value) {
     return new_head;
 }
 
-/* Reverses the elements of the list.
-*
-* Does not allocate or free nodes.
-*
-* list: pointer to first node
-
-  returns: head of modified list
-*/
-Node *reverse(Node *list) {
-    if (list == NULL || list->next == NULL) {
-        return list;
-    }
-
-    Node *current = list;
-    Node *next = current->next;
-    Node *temp;
-
-    current->next = NULL;
-
-    while (next != NULL) {
-        temp = next->next;
-        next->next = current;
-        current = next;
-        next = temp;
-    }
-    return current;
-}
-
 int main() {
     Node *list = make_node(1, NULL);
     list->next = make_node(2, NULL);
@@ -110,8 +94,9 @@ int main() {
 
     int value;
     list = pop(list, &value);
+    printf("popped value = %d\n", value);
     print_list(list);
 
-    list = reverse(list);
+    list = swap(list);
     print_list(list);
 }

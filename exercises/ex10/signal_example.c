@@ -71,7 +71,10 @@ int main(void) {
         alarm(5);
 
         // get the answer
-	    char *ret = fgets(txt, 4, stdin);
+        while (1) {
+            char *ret = fgets(txt, 4, stdin);
+            if (ret) break;
+        }
         answer = atoi(txt);
 
         // check the answer

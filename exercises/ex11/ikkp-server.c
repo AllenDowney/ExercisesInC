@@ -49,20 +49,19 @@ void handle_shutdown(int sig) {
 int open_listener_socket(void) {
     int s = socket(PF_INET, SOCK_STREAM, 0);
     if (s == -1)
-    error("Can't open listener socket");
+        error("Can't open listener socket");
     return s;
 }
 
 /* Wait for clients to connect.
 */
-int open_client_socket(void) {
-    static struct sockaddr_storage client_address;
+int open_client_socket() {
+    static struct sockaddr client_address[1];
     static unsigned int address_size = sizeof(client_address);
-    int s;
 
-    if ((s = accept(listener_d, (struct sockaddr *)&client_address,
-    &address_size)) == -1)
-    error("Can't open client socket");
+    int s = accept(listener_d, client_address, &address_size);
+    if (s == -1)
+        error("Can't open client socket");
 
     return s;
 }
@@ -148,8 +147,6 @@ int main(int argc, char *argv[])
 
     if (listen(listener_d, 10) == -1)
         error("Can't listen");
-
-
 
     while (1) {
         printf("Waiting for connection on port %d\n", port);

@@ -67,20 +67,32 @@ void join_thread(pthread_t thread)
     }
 }
 
+void perform_task(int task_number) {
+    // actual work goes here
+}
+
 void child_code(Shared *shared)
 {
     printf("Starting child at counter %d\n", shared->counter);
 
     while (1) {
+        // check if we're done
         if (shared->counter >= shared->end) {
             return;
         }
+
+        // get the next task
+        int task_number = shared->counter;
         shared->array[shared->counter]++;
         shared->counter++;
 
-        if (shared->counter % 10000 == 0) {
-            printf("%d\n", shared->counter);
+        // update the progress bar
+        if (task_number % 10000 == 0) {
+            printf("%d\n", task_number);
         }
+
+        // go off and do the task
+        perform_task(task_number);
     }
 }
 

@@ -1,6 +1,6 @@
-# ExercisesInC
+# Exercises in C:
 
-by Allen B. Downey
+By Allen B. Downey,
 
 Exercises for people learning the C programming language.
 

@@ -111,16 +111,17 @@ void add_bigint(BigInt x, BigInt y, char carry_in, BigInt z) {
         b = *y;
     }
 
+    // if no more digits and no carry to apply, we're done
+    if (dx == 0 && dy == 0 && carry_in == '0') {
+      *z = '\0';
+      return;
+    }
+
     // printf("%c %c %c\n", a, b, carry_in);
     add_digits(a, b, carry_in, &total, &carry_out);
     // printf("%c %c\n", carry_out, total);
 
-    // if total and carry are 0, we're done
-    if (total == '0' && carry_out == '0') {
-        *z = '\0';
-        return;
-    }
-    // otherwise store the digit we just computed
+    // store the digit we just computed
     *z = total;
 
     // and make a recursive call to fill in the rest.
